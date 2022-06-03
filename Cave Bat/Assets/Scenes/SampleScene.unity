@@ -1423,8 +1423,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2e54df816d0ab44965b413fbe078c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jump: 5
+  speed: 15
+  jump: 10
+  toAngle: {x: 0, y: 0, z: 0, w: 0}
+  fromAngle: {x: 0, y: 0, z: 0, w: 0}
 --- !u!61 &459258354
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1463,10 +1465,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1531,15 +1533,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459258352}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 4.37, y: 2.008, z: 0}
   m_LocalScale: {x: 0.37793005, y: 1.0154054, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 519420032}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!1 &462283699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1952,13 +1953,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.562986, y: -1.9775351, z: -10}
-  m_LocalScale: {x: 2.6459923, y: 0.9848283, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0053232308, w: 0.9999859}
+  m_LocalPosition: {x: 0.021624565, y: -0.046411037, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 459258357}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &521524089
 GameObject:

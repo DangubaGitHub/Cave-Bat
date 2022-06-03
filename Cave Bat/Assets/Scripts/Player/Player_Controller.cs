@@ -11,6 +11,9 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] float jump;
     int playerDirection = -1;
 
+    [SerializeField] Quaternion toAngle;
+    [SerializeField] Quaternion fromAngle;
+
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody2D>();
@@ -40,7 +43,13 @@ public class Player_Controller : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
+
+            fromAngle = transform.rotation;
+            toAngle = Quaternion.Euler(transform.eulerAngles + new Vector3(0, 0, 75f));
+            
         }
+        //Debug.Log(playerRb.velocity.y);
+        //transform.eulerAngles = new Vector3(0, 0, playerRb.velocity.y * 5f);
     }
 
     private void FixedUpdate()
