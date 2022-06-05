@@ -11,9 +11,13 @@ public class AnimationManager : MonoBehaviour
     const string YELLOW = "Yellow_Idle";
     const string PURPLE = "Purple_Idle";
 
+    GameObject Player;
+    GameObject Yellow;
+
     private void Awake()
     {
         instance = this;
+        Yellow = GetComponent<Animator>();
     }
 
     void Start()
