@@ -14,10 +14,12 @@ public class AnimationManager : MonoBehaviour
     GameObject Player;
     GameObject Yellow;
 
+    Animator anim;
+
     private void Awake()
     {
         instance = this;
-        Yellow = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     void Start()
@@ -34,7 +36,7 @@ public class AnimationManager : MonoBehaviour
     {
         if (currentState == newState) return;
 
-        anim.Play(newState);      // anim is the Animator component
+        //anim.Play(newState);      // anim is the Animator component
 
         currentState = newState;
     }

@@ -19,12 +19,21 @@ public class Player_Collisions : MonoBehaviour
     {
         if(other.CompareTag("Yellow Pickup"))
         {
-
+            Destroy(other.gameObject);
         }
 
         if(other.CompareTag("Purple Pickup"))
         {
+            Destroy(other.gameObject);
+        }
+    }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Border"))
+        {
+            Destroy(gameObject);
+            GameManager.instance.ReloadGame();
         }
     }
 }
