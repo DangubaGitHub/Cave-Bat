@@ -19,11 +19,13 @@ public class Player_Collisions : MonoBehaviour
     {
         if(other.CompareTag("Yellow Pickup"))
         {
+            GameManager.instance.AddYellow();
             Destroy(other.gameObject);
         }
 
         if(other.CompareTag("Purple Pickup"))
         {
+            GameManager.instance.AddPurple();
             Destroy(other.gameObject);
         }
     }

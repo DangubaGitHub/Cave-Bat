@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public int yellow;
+    public int purple;
+
     private void Awake()
     {
         instance = this;
@@ -14,7 +17,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        yellow = 0;
+        purple = 0;
     }
 
     void Update()
@@ -25,5 +29,15 @@ public class GameManager : MonoBehaviour
     public void ReloadGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void AddYellow()
+    {
+        yellow++;
+    }
+
+    public void AddPurple()
+    {
+        purple++;
     }
 }
