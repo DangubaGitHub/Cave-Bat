@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Yellow Pickup
   - Purple Pickup
+  - Border
   layers:
   - Default
   - TransparentFX
