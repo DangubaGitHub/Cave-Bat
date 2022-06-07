@@ -10,9 +10,13 @@ public class GameManager : MonoBehaviour
     public int yellow;
     public int purple;
 
+    UIController uiControllerScript;
+    public GameObject UI_Canvas;
+
     private void Awake()
     {
         instance = this;
+        uiControllerScript = UI_Canvas.GetComponent<UIController>();
     }
 
     void Start()
@@ -34,10 +38,12 @@ public class GameManager : MonoBehaviour
     public void AddYellow()
     {
         yellow++;
+        uiControllerScript.UpdateYellowCount();
     }
 
     public void AddPurple()
     {
         purple++;
+        uiControllerScript.UpdatePurpleCount();
     }
 }
