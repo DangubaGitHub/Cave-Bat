@@ -18,12 +18,9 @@ public class Player_Controller : MonoBehaviour
     bool isDiving;
 
     [SerializeField] float speed;
-    [SerializeField] float diveSpeed;
+    [SerializeField] float glideSpeed;
     [SerializeField] float jump;
     int playerDirection = -1;
-
-    [SerializeField] Quaternion toAngle;
-    [SerializeField] Quaternion fromAngle;
 
     private void Awake()
     {
@@ -34,35 +31,42 @@ public class Player_Controller : MonoBehaviour
 
     void Start()
     {
-        //playerRb.velocity = Vector2.left * speed;
         
     }
 
     void Update()
     {
-        playerRb.velocity = new Vector2(playerDirection * transform.localScale.x * speed, playerRb.velocity.y);
+        //playerRb.velocity = new Vector2(playerDirection * transform.localScale.x * speed, playerRb.velocity.y);
+        playerRb.velocity = new Vector2(playerDirection * transform.localScale.x * speed, transform.localScale.y * glideSpeed);
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            //speed = speed;
             playerDirection = -1;
         }
         else if(Input.GetKeyDown(KeyCode.D))
         {
-            //speed = -speed;
             playerDirection = 1;
         }
 
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
-
-            fromAngle = transform.rotation;
-            toAngle = Quaternion.Euler(transform.eulerAngles + new Vector3(0, 0, 75f));
-            
         }
-        //Debug.Log(playerRb.velocity.y);
-        //transform.eulerAngles = new Vector3(0, 0, playerRb.velocity.y * 5f);
+
+        else if (Input.GetButtonUp("Jump"))
+        {
+            SetGlideSpeedBack();
+        }
+
+        if (Input.GetButtonDown("Dive"))
+        {
+            Dive();
+        }
+
+        else if (Input.GetButtonUp("Dive"))
+        {
+            SetGlideSpeedBack();
+        }
 
         if (playerRb.velocity.x < 0)
         {
@@ -85,8 +89,6 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
-
-
     private void FixedUpdate()
     {
 
@@ -94,15 +96,28 @@ public class Player_Controller : MonoBehaviour
 
     void Jump()
     {
-        //playerRb.velocity = new Vector2(jump * Time.deltaTime, playerRb.velocity.x);
-        playerRb.velocity = Vector2.up * jump;
+        //playerRb.velocity = Vector2.up * jump;
+        //playerRb.AddForce(transform.up * jump);
+        glideSpeed = 8;
+
+        //Invoke("SetGlideSpeedBack", .3f);
+    }
+
+    void Dive()
+    {
+        glideSpeed = -20;
+    }
+
+    void SetGlideSpeedBack()
+    {
+        glideSpeed = -3f;
     }
 
     void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;
 
-        playerAnim.Play(newState);      // anim is the Animator component
+        playerAnim.Play(newState);
 
         currentState = newState;
     }
