@@ -5,16 +5,20 @@ using UnityEngine;
 public class AnimationManager : MonoBehaviour
 {
     public static AnimationManager instance;
+    Animator anim;
 
     string currentState;
 
     const string YELLOW = "Yellow_Idle";
     const string PURPLE = "Purple_Idle";
 
+    public const string UP = "Player_Up";
+    public const string GLIDE = "Player_Glide";
+    public const string DIVE = "Player_Dive";
+
+
     GameObject Player;
     GameObject Yellow;
-
-    Animator anim;
 
     private void Awake()
     {
@@ -32,11 +36,11 @@ public class AnimationManager : MonoBehaviour
         
     }
 
-    void ChangeAnimationState(string newState)
+    public void ChangeAnimationState(string newState)
     {
         if (currentState == newState) return;
 
-        //anim.Play(newState);      // anim is the Animator component
+        anim.Play(newState);      // anim is the Animator component
 
         currentState = newState;
     }

@@ -6,8 +6,19 @@ public class Player_Controller : MonoBehaviour
 {
 
     Rigidbody2D playerRb;
+    SpriteRenderer playerSr;
+    Animator playerAnim;
+
+    string currentState;
+
+    const string UP = "Player_Up";
+    const string GLIDE = "Player_Glide";
+    const string DIVE = "Player_Dive";
+
+    bool isDiving;
 
     [SerializeField] float speed;
+    [SerializeField] float diveSpeed;
     [SerializeField] float jump;
     int playerDirection = -1;
 
@@ -17,6 +28,8 @@ public class Player_Controller : MonoBehaviour
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody2D>();
+        playerSr = GetComponent<SpriteRenderer>();
+        playerAnim = GetComponent<Animator>();
     }
 
     void Start()
@@ -50,7 +63,29 @@ public class Player_Controller : MonoBehaviour
         }
         //Debug.Log(playerRb.velocity.y);
         //transform.eulerAngles = new Vector3(0, 0, playerRb.velocity.y * 5f);
+
+        if (playerRb.velocity.x < 0)
+        {
+            playerSr.flipX = true;
+        }
+
+        else if (playerRb.velocity.x > 0)
+        {
+            playerSr.flipX = false;
+        }
+
+        if (playerRb.velocity.y < 0 && !isDiving)
+        {
+            ChangeAnimationState(GLIDE);
+        }
+
+        else if (playerRb.velocity.y > 0)
+        {
+            ChangeAnimationState(UP);
+        }
     }
+
+
 
     private void FixedUpdate()
     {
@@ -61,5 +96,14 @@ public class Player_Controller : MonoBehaviour
     {
         //playerRb.velocity = new Vector2(jump * Time.deltaTime, playerRb.velocity.x);
         playerRb.velocity = Vector2.up * jump;
+    }
+
+    void ChangeAnimationState(string newState)
+    {
+        if (currentState == newState) return;
+
+        playerAnim.Play(newState);      // anim is the Animator component
+
+        currentState = newState;
     }
 }
