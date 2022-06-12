@@ -13,9 +13,13 @@ public class Player_Controller : MonoBehaviour
 
     const string UP = "Player_Up";
     const string GLIDE = "Player_Glide";
-    const string DIVE = "Player_Dive";
+    const string DIVE = "Player_Dive_Down";
+    const string DIVE_L = "Player_Dive_Down_L";
+    const string DIVE_END = "Player_Dive_Up";
+    const string DIVE_END_L = "Player_Dive_Up_L";
 
     bool isDiving;
+    bool isFlying;
 
     [SerializeField] float speed;
     [SerializeField] float glideSpeed;
@@ -48,24 +52,44 @@ public class Player_Controller : MonoBehaviour
             playerDirection = 1;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !isDiving)
         {
+            isFlying = true;
             Jump();
         }
 
-        else if (Input.GetButtonUp("Jump"))
+        else if (Input.GetButtonUp("Jump") && !isDiving)
         {
             SetGlideSpeedBack();
+            isFlying = false;
         }
 
-        if (Input.GetButtonDown("Dive"))
+        if (Input.GetButtonDown("Dive") && playerDirection == 1 && !isFlying)
         {
+            isDiving = true;
+            ChangeAnimationState(DIVE);
             Dive();
         }
 
-        else if (Input.GetButtonUp("Dive"))
+        else if (Input.GetButtonUp("Dive") && playerDirection == 1 && !isFlying)
         {
+            ChangeAnimationState(DIVE_END);
             SetGlideSpeedBack();
+            isDiving = false;
+        }
+
+        if (Input.GetButtonDown("Dive") && playerDirection == -1 && !isFlying)
+        {
+            isDiving = true;
+            ChangeAnimationState(DIVE_L);
+            Dive();
+        }
+
+        else if (Input.GetButtonUp("Dive") && playerDirection == -1 && !isFlying)
+        {
+            ChangeAnimationState(DIVE_END_L);
+            SetGlideSpeedBack();
+            isDiving = false;
         }
 
         if (playerRb.velocity.x < 0)
