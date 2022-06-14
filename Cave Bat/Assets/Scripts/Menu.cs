@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] GameObject UICanvas;
+    [SerializeField] GameObject MenuPanel;
+
+    [SerializeField] GameObject yellowCounter;
 
     public bool menuOn;
 
     void Start()
     {
-        UICanvas.SetActive(true);
-        menuOn = true;
-        Time.timeScale = 0;
+        TurnMenuOn();
     }
 
     void Update()
@@ -27,8 +27,30 @@ public class Menu : MonoBehaviour
 
     public void PlayGame()
     {
-        UICanvas.SetActive(false);
+        TurnMenuOff();
+    }
+
+    public void TurnMenuOn()
+    {
+        MenuPanel.SetActive(true);
+        yellowCounter.SetActive(false);
+        menuOn = true;
+        Time.timeScale = 0;
+
+    }
+
+    public void TurnMenuOff()
+    {
+        MenuPanel.SetActive(false);
+        yellowCounter.SetActive(true);
         menuOn = false;
         Time.timeScale = 1;
+    }
+
+    public void ResetScore()
+    {
+        PlayerPrefs.DeleteAll();
+        ScoreManager.instance.highScoreCount = 0;
+        ScoreManager.instance.UpdateHighScoreCount();
     }
 }

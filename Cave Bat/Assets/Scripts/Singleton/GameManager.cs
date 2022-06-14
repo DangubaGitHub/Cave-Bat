@@ -43,7 +43,9 @@ public class GameManager : MonoBehaviour
 
     public void AddPurple()
     {
-        purple++;
-        uiControllerScript.UpdatePurpleCount();
+        yellow = yellow + 20;
+        uiControllerScript.UpdateYellowCount();
+        //purple++;
+        //uiControllerScript.UpdatePurpleCount();
     }
 }

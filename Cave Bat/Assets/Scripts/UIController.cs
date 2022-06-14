@@ -7,7 +7,7 @@ public class UIController : MonoBehaviour
 {
 
     public Text yellow;
-    public Text purple;
+    //public Text purple;
 
     private void Awake()
     {
@@ -31,6 +31,6 @@ public class UIController : MonoBehaviour
 
     public void UpdatePurpleCount()
     {
-        purple.text = GameManager.instance.purple.ToString();
+        //purple.text = GameManager.instance.purple.ToString();
     }
 }
