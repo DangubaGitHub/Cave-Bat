@@ -20,12 +20,14 @@ public class Player_Collisions : MonoBehaviour
         if(other.CompareTag("Yellow Pickup"))
         {
             GameManager.instance.AddYellow();
+            AudioManager.instance.PlaySFX(5);
             Destroy(other.gameObject);
         }
 
         if(other.CompareTag("Purple Pickup"))
         {
             GameManager.instance.AddPurple();
+            AudioManager.instance.PlaySFX(3);
             Destroy(other.gameObject);
         }
     }

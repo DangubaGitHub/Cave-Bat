@@ -143,6 +143,7 @@ MonoBehaviour:
   timeBetweenShots: 1
   bulletForce: 5
   aggroDistance: 10
+  lookDistance: 15
 --- !u!1 &2958635184446110226
 GameObject:
   m_ObjectHideFlags: 0

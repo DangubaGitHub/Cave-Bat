@@ -63,12 +63,14 @@ public class Player_Controller : MonoBehaviour
             {
                 isFlying = true;
                 Jump();
+                //AudioManager.instance.PlaySFX(1);
             }
 
             else if (Input.GetButtonUp("Jump") && !isDiving)
             {
                 SetGlideSpeedBack();
                 isFlying = false;
+                //AudioManager.instance.PlaySFX(2);
             }
 
             if (Input.GetButtonDown("Dive") && playerDirection == 1 && !isFlying)
@@ -76,6 +78,7 @@ public class Player_Controller : MonoBehaviour
                 isDiving = true;
                 ChangeAnimationState(DIVE);
                 Dive();
+                //AudioManager.instance.PlaySFX(0);
             }
 
             else if (Input.GetButtonUp("Dive") && playerDirection == 1 && !isFlying)
@@ -83,6 +86,7 @@ public class Player_Controller : MonoBehaviour
                 ChangeAnimationState(DIVE_END);
                 SetGlideSpeedBack();
                 isDiving = false;
+                //AudioManager.instance.PlaySFX(2);
             }
 
             if (Input.GetButtonDown("Dive") && playerDirection == -1 && !isFlying)
@@ -90,6 +94,7 @@ public class Player_Controller : MonoBehaviour
                 isDiving = true;
                 ChangeAnimationState(DIVE_L);
                 Dive();
+                //AudioManager.instance.PlaySFX(0);
             }
 
             else if (Input.GetButtonUp("Dive") && playerDirection == -1 && !isFlying)
@@ -97,6 +102,7 @@ public class Player_Controller : MonoBehaviour
                 ChangeAnimationState(DIVE_END_L);
                 SetGlideSpeedBack();
                 isDiving = false;
+                //AudioManager.instance.PlaySFX(2);
             }
 
             if (playerRb.velocity.x < 0)

@@ -11,6 +11,7 @@ public class Spider : MonoBehaviour
     float nextShotTime;
     [SerializeField] float bulletForce;
     [SerializeField] float aggroDistance;
+    [SerializeField] float lookDistance;
 
     Rigidbody2D enemyRb;
 
@@ -26,15 +27,19 @@ public class Spider : MonoBehaviour
 
     void Update()
     {
-        if (Vector2.Distance(transform.position, player.position) < aggroDistance)
+        if (Vector2.Distance(transform.position, player.position) < lookDistance)
         {
             EnemyLookTowardsPlayer();
 
-            if (Time.time > nextShotTime)
+            if (Vector2.Distance(transform.position, player.position) < aggroDistance)
             {
-                Shoot();
+                if (Time.time > nextShotTime)
+                {
+                    Shoot();
+                    AudioManager.instance.PlaySFX(4);
 
-                nextShotTime = Time.time + timeBetweenShots;
+                    nextShotTime = Time.time + timeBetweenShots;
+                }
             }
         }
     }
