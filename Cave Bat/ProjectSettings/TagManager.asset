@@ -7,6 +7,8 @@ TagManager:
   - Yellow Pickup
   - Purple Pickup
   - Border
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX

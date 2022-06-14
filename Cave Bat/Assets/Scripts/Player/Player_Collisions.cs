@@ -32,7 +32,7 @@ public class Player_Collisions : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Border"))
+        if(other.gameObject.CompareTag("Border") || other.gameObject.CompareTag("Bullet"))
         {
             Destroy(gameObject);
             GameManager.instance.ReloadGame();
