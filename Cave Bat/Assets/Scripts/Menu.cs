@@ -12,6 +12,7 @@ public class Menu : MonoBehaviour
     {
         UICanvas.SetActive(true);
         menuOn = true;
+        Time.timeScale = 0;
     }
 
     void Update()
@@ -28,5 +29,6 @@ public class Menu : MonoBehaviour
     {
         UICanvas.SetActive(false);
         menuOn = false;
+        Time.timeScale = 1;
     }
 }

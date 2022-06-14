@@ -26,11 +26,16 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] float jump;
     int playerDirection = -1;
 
+    Menu menu_Script;
+    [SerializeField] GameObject Menu;
+
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerSr = GetComponent<SpriteRenderer>();
         playerAnim = GetComponent<Animator>();
+
+        menu_Script = Menu.GetComponent<Menu>();
     }
 
     void Start()
@@ -40,76 +45,79 @@ public class Player_Controller : MonoBehaviour
 
     void Update()
     {
-        //playerRb.velocity = new Vector2(playerDirection * transform.localScale.x * speed, playerRb.velocity.y);
-        playerRb.velocity = new Vector2(playerDirection * transform.localScale.x * speed, transform.localScale.y * glideSpeed);
+        if (menu_Script.menuOn == false)
+        {
+            //playerRb.velocity = new Vector2(playerDirection * transform.localScale.x * speed, playerRb.velocity.y);
+            playerRb.velocity = new Vector2(playerDirection * transform.localScale.x * speed, transform.localScale.y * glideSpeed);
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            playerDirection = -1;
-        }
-        else if(Input.GetKeyDown(KeyCode.D))
-        {
-            playerDirection = 1;
-        }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                playerDirection = -1;
+            }
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                playerDirection = 1;
+            }
 
-        if (Input.GetButtonDown("Jump") && !isDiving)
-        {
-            isFlying = true;
-            Jump();
-        }
+            if (Input.GetButtonDown("Jump") && !isDiving)
+            {
+                isFlying = true;
+                Jump();
+            }
 
-        else if (Input.GetButtonUp("Jump") && !isDiving)
-        {
-            SetGlideSpeedBack();
-            isFlying = false;
-        }
+            else if (Input.GetButtonUp("Jump") && !isDiving)
+            {
+                SetGlideSpeedBack();
+                isFlying = false;
+            }
 
-        if (Input.GetButtonDown("Dive") && playerDirection == 1 && !isFlying)
-        {
-            isDiving = true;
-            ChangeAnimationState(DIVE);
-            Dive();
-        }
+            if (Input.GetButtonDown("Dive") && playerDirection == 1 && !isFlying)
+            {
+                isDiving = true;
+                ChangeAnimationState(DIVE);
+                Dive();
+            }
 
-        else if (Input.GetButtonUp("Dive") && playerDirection == 1 && !isFlying)
-        {
-            ChangeAnimationState(DIVE_END);
-            SetGlideSpeedBack();
-            isDiving = false;
-        }
+            else if (Input.GetButtonUp("Dive") && playerDirection == 1 && !isFlying)
+            {
+                ChangeAnimationState(DIVE_END);
+                SetGlideSpeedBack();
+                isDiving = false;
+            }
 
-        if (Input.GetButtonDown("Dive") && playerDirection == -1 && !isFlying)
-        {
-            isDiving = true;
-            ChangeAnimationState(DIVE_L);
-            Dive();
-        }
+            if (Input.GetButtonDown("Dive") && playerDirection == -1 && !isFlying)
+            {
+                isDiving = true;
+                ChangeAnimationState(DIVE_L);
+                Dive();
+            }
 
-        else if (Input.GetButtonUp("Dive") && playerDirection == -1 && !isFlying)
-        {
-            ChangeAnimationState(DIVE_END_L);
-            SetGlideSpeedBack();
-            isDiving = false;
-        }
+            else if (Input.GetButtonUp("Dive") && playerDirection == -1 && !isFlying)
+            {
+                ChangeAnimationState(DIVE_END_L);
+                SetGlideSpeedBack();
+                isDiving = false;
+            }
 
-        if (playerRb.velocity.x < 0)
-        {
-            playerSr.flipX = true;
-        }
+            if (playerRb.velocity.x < 0)
+            {
+                playerSr.flipX = true;
+            }
 
-        else if (playerRb.velocity.x > 0)
-        {
-            playerSr.flipX = false;
-        }
+            else if (playerRb.velocity.x > 0)
+            {
+                playerSr.flipX = false;
+            }
 
-        if (playerRb.velocity.y < 0 && !isDiving)
-        {
-            ChangeAnimationState(GLIDE);
-        }
+            if (playerRb.velocity.y < 0 && !isDiving)
+            {
+                ChangeAnimationState(GLIDE);
+            }
 
-        else if (playerRb.velocity.y > 0)
-        {
-            ChangeAnimationState(UP);
+            else if (playerRb.velocity.y > 0)
+            {
+                ChangeAnimationState(UP);
+            }
         }
     }
 
