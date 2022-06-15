@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player_Collisions : MonoBehaviour
 {
+    [SerializeField] GameObject Player;
 
     void Start()
     {
@@ -34,9 +35,10 @@ public class Player_Collisions : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Border") || other.gameObject.CompareTag("Bullet"))
+        if(other.gameObject.CompareTag("Enemy"))
         {
-            Destroy(gameObject);
+            Player.SetActive(false);
+            //Destroy(gameObject);
             GameManager.instance.ReloadGame();
         }
     }
