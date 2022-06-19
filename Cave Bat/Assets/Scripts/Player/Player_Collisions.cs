@@ -38,7 +38,6 @@ public class Player_Collisions : MonoBehaviour
         if(other.gameObject.CompareTag("Enemy"))
         {
             Player.SetActive(false);
-            //Destroy(gameObject);
             GameManager.instance.ReloadGame();
         }
     }

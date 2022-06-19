@@ -9,7 +9,7 @@ public class ScoreManager : MonoBehaviour
 
     public Text highScoreText;
 
-    public int highScoreCount;
+    public int highScoreCount; 
 
     private void Awake()
     {
